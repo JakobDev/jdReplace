@@ -1,0 +1,17 @@
+label.directory=Directory:
+button.browse=Browse
+label.searchFor=Search for:
+label.replaceWith=Replace with:
+checkbox.searchSubdirectories=Search Subdirectories
+button.about=About
+button.ok=OK
+filedialog.title=Browse
+messagebox.nodirectory.title=Not a directory
+messagebox.nodirectory.text='{}' is not a directory!
+messagebox.nosearchtext.title=No search text
+messagebox.nosearchtext.text=Please enter a text to search for
+messagebox.finished.title=finished
+messagebox.finished.text=The text has been successfully replaced in all files
+about.title=About
+about.text=jdReplace Version 1.0 made by JakobDev\n\nThis program is licensed under GPL
+replace.error=Could not replace text in {}. Maybe it's a binary file.

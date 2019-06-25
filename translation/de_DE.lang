@@ -1,0 +1,17 @@
+label.directory=Verzeichnis:
+button.browse=Durchsuchen
+label.searchFor=Suche nach:
+label.replaceWith=Ersetze durch:
+checkbox.searchSubdirectories=Unterverzeichnisse durchsuchen
+button.about=Über
+button.ok=OK
+filedialog.title=Auswählen
+messagebox.nodirectory.title=Kein Verzeichnis
+messagebox.nodirectory.text='{}' ist kein Verzeichnis
+messagebox.nosearchtext.title=Kein Suchtext
+messagebox.nosearchtext.text=Bitte gib einen Text ein, nach dem gesucht werden soll
+messagebox.finished.title=Fertig
+messagebox.finished.text=Der Text wurde in allen Dateien erfolgreich ersetzt
+about.title=Über
+about.text=jdReplace Version 1.0 von JakobDev\n\nDieses Programm wurde unter der GPL lizenziert
+replace.error=Konnte Text in {} nicht ersetzen. Möglicherweise ist es eine Binärdatei.
