@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QDir, QLocale
+from PyQt5.QtCore import QDir, QLocale, Qt
+from PyQt5.QtGui import QFont
+import webbrowser
 import glob
 import sys
 import os
@@ -35,20 +37,70 @@ class TranslationHelper():
         else:
             return key
 
+class AboutWindow(QWidget):
+    def setup(self):
+        self.titleLabel = QLabel("jdReplace Version " + version)
+        self.descriptionLabel = QLabel(texts.translate("about.description"))
+        self.copyrightLabel = QLabel("Copyright © 2019 JakobDev")
+        self.licenseLabel = QLabel(texts.translate("about.license"))
+        self.viewSourceButton = QPushButton(texts.translate("about.viewSource"))
+        self.closeButton = QPushButton(texts.translate("about.close"))
+        
+        self.titleLabelFont = QFont()
+        self.titleLabelFont.setBold(True)
+        self.titleLabelFont.setPointSize(16)
+
+        self.legalFont = QFont()
+        self.legalFont.setPointSize(8)
+
+        self.titleLabel.setFont(self.titleLabelFont)
+        self.copyrightLabel.setFont(self.legalFont)
+        self.licenseLabel.setFont(self.legalFont)
+
+        self.titleLabel.setAlignment(Qt.AlignCenter)
+        self.descriptionLabel.setAlignment(Qt.AlignCenter)
+        self.copyrightLabel.setAlignment(Qt.AlignCenter)
+        self.licenseLabel.setAlignment(Qt.AlignCenter)
+
+        self.viewSourceButton.clicked.connect(self.viewSourceAction)
+        self.closeButton.clicked.connect(self.closeAction)
+
+        self.buttonLayout = QHBoxLayout()
+        self.buttonLayout.addWidget(self.viewSourceButton)
+        self.buttonLayout.addWidget(self.closeButton)
+
+        self.mainLayout = QVBoxLayout()
+        self.mainLayout.addWidget(self.titleLabel)
+        self.mainLayout.addWidget(self.descriptionLabel)
+        self.mainLayout.addWidget(self.copyrightLabel)
+        self.mainLayout.addWidget(self.licenseLabel)
+        self.mainLayout.addLayout(self.buttonLayout)
+        
+        self.setLayout(self.mainLayout)
+        self.setWindowTitle(texts.translate("about.title"))
+        
+    def viewSourceAction(self):
+        webbrowser.open("https://gitlab.com/JakobDev/jdReplace")
+
+    def closeAction(self):
+        self.close()
+
 class StartWindow(QWidget):
     def setup(self):
-        self.texts = TranslationHelper(QLocale.system().name())
-        self.directoryLabel = QLabel(self.texts.translate("label.directory"))
+        self.about = AboutWindow()
+        self.about.setup()
+
+        self.directoryLabel = QLabel(texts.translate("label.directory"))
         self.directoryEdit = QLineEdit()
-        self.directoryButton = QPushButton(self.texts.translate("button.browse"))
-        self.inputTextLabel = QLabel(self.texts.translate("label.searchFor"))
+        self.directoryButton = QPushButton(texts.translate("button.browse"))
+        self.inputTextLabel = QLabel(texts.translate("label.searchFor"))
         self.inputTextEdit = QPlainTextEdit()
-        self.outputTextLabel = QLabel(self.texts.translate("label.replaceWith"))
+        self.outputTextLabel = QLabel(texts.translate("label.replaceWith"))
         self.outputTextEdit = QPlainTextEdit()
-        self.checkBox = QCheckBox(self.texts.translate("checkbox.searchSubdirectories"))
+        self.checkBox = QCheckBox(texts.translate("checkbox.searchSubdirectories"))
         self.progressBar = QProgressBar()
-        self.aboutButton = QPushButton(self.texts.translate("button.about"))
-        self.okButton = QPushButton(self.texts.translate("button.ok"))
+        self.aboutButton = QPushButton(texts.translate("button.about"))
+        self.okButton = QPushButton(texts.translate("button.ok"))
 
         self.directoryEdit.setText(QDir.currentPath())
         self.directoryButton.clicked.connect(self.browse)
@@ -85,22 +137,22 @@ class StartWindow(QWidget):
         path = self.directoryEdit.text()
         if not os.path.isdir(path):
             path = QDir.currentPath()
-        directory = QFileDialog.getExistingDirectory(self, self.texts.translate("filedialog.title"),path)
+        directory = QFileDialog.getExistingDirectory(self, texts.translate("filedialog.title"),path)
 
         if directory:
             self.directoryEdit.setText(directory)
     
     def showAbout(self):
-        showMessageBox(self.texts.translate("about.title"),self.texts.translate("about.text").replace("\\n","\n"))
+        self.about.show()
 
     def replaceFiles(self):
         path = self.directoryEdit.text()
         if not os.path.isdir(path):
-            showMessageBox(self.texts.translate("messagebox.nodirectory.title"),self.texts.translate("messagebox.nodirectory.text").replace("{}",path))
+            showMessageBox(texts.translate("messagebox.nodirectory.title"),texts.translate("messagebox.nodirectory.text").replace("{}",path))
             return
         searchText = self.inputTextEdit.toPlainText()
         if searchText == "":
-            showMessageBox(self.texts.translate("messagebox.nosearchtext.title"),self.texts.translate("messagebox.nosearchtext.text"))
+            showMessageBox(texts.translate("messagebox.nosearchtext.title"),texts.translate("messagebox.nosearchtext.text"))
             return
         replaceText = self.outputTextEdit.toPlainText()
         if self.checkBox.checkState() == 0:
@@ -122,13 +174,15 @@ class StartWindow(QWidget):
                 with open(filename, 'w') as file:
                     file.write(filedata)
             except:
-                print(self.texts.translate("replace.error").replace("{}",filename))
+                print(texts.translate("replace.error").replace("{}",filename))
             progressValue += 1
             self.progressBar.setValue(progressValue / onePercent)
-        showMessageBox(self.texts.translate("messagebox.finished.title"),self.texts.translate("messagebox.finished.text"))
+        showMessageBox(texts.translate("messagebox.finished.title"),texts.translate("messagebox.finished.text"))
 
-        
+  
+version = "1.1" 
 app = QApplication(sys.argv)
+texts = TranslationHelper(QLocale.system().name())
 w = StartWindow()
 w.setup()
 sys.exit(app.exec_())
