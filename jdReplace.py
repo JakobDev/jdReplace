@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QDir, QLocale, Qt
+from PyQt5.QtCore import QDir, QLocale, Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QFont
 import webbrowser
 import glob
@@ -85,10 +85,62 @@ class AboutWindow(QWidget):
     def closeAction(self):
         self.close()
 
+class ReplaceThread(QThread):
+    count = pyqtSignal("int")
+    progress = pyqtSignal("int")
+    text = pyqtSignal("QString")
+    def __init__(self):
+        QThread.__init__(self)
+        #self.signal = pyqtSignal('QString')
+
+    def __del__(self):
+        self.wait()
+
+    def setup(self,recursive,path,searchText,replaceText,skipHidden,followSymlinks):
+        self.recursive = recursive
+        self.path = path
+        self.searchText = searchText
+        self.replaceText = replaceText
+        self.skipHidden = skipHidden
+        self.followSymlinks = followSymlinks
+
+    def listFiles(self,path): 
+        self.text.emit(texts.translate("progressbar.searching") % path)  
+        for f in os.listdir(path):
+            if f.startswith(".") and self.skipHidden:
+                continue
+            filename = os.path.join(path,f)
+            if os.path.islink(filename) and not self.followSymlinks:
+                continue
+            if os.path.isdir(filename):
+                if self.recursive:
+                    self.listFiles(filename)
+            else:
+                self.filelist.append(filename)
+
+    def run(self):
+        self.filelist = []
+        self.listFiles(self.path)
+        self.count.emit(len(self.filelist))
+        progressCount = 0
+        for filename in self.filelist:
+            try:
+                with open(filename, 'r') as file :
+                    filedata = file.read()
+                if filedata.find(self.searchText) != -1:
+                    filedata = filedata.replace(self.searchText,self.replaceText)
+                    with open(filename, 'w') as file:
+                        file.write(filedata)
+            except:
+                print(texts.translate("replace.error").replace("{}",filename))
+            progressCount += 1
+            self.progress.emit(progressCount)
+
 class StartWindow(QWidget):
     def setup(self):
         self.about = AboutWindow()
         self.about.setup()
+        self.thread = ReplaceThread()
 
         self.directoryLabel = QLabel(texts.translate("label.directory"))
         self.directoryEdit = QLineEdit()
@@ -97,22 +149,37 @@ class StartWindow(QWidget):
         self.inputTextEdit = QPlainTextEdit()
         self.outputTextLabel = QLabel(texts.translate("label.replaceWith"))
         self.outputTextEdit = QPlainTextEdit()
-        self.checkBox = QCheckBox(texts.translate("checkbox.searchSubdirectories"))
+        self.subdirCheckBox = QCheckBox(texts.translate("checkbox.searchSubdirectories"))
+        self.hiddenCheckBox = QCheckBox(texts.translate("checkbox.skipHidden"))
+        self.symlinkCheckBox = QCheckBox(texts.translate("checkbox.followSymlinks"))
         self.progressBar = QProgressBar()
         self.aboutButton = QPushButton(texts.translate("button.about"))
         self.okButton = QPushButton(texts.translate("button.ok"))
 
         self.directoryEdit.setText(QDir.currentPath())
+        self.inputTextEdit.setLineWrapMode(QPlainTextEdit.NoWrap)
+        self.outputTextEdit.setLineWrapMode(QPlainTextEdit.NoWrap)
         self.directoryButton.clicked.connect(self.browse)
         self.aboutButton.clicked.connect(self.showAbout)
         self.okButton.clicked.connect(self.replaceFiles)
+        self.thread.count.connect(self.setMax)
+        self.thread.progress.connect(self.setProgress)
+        self.thread.text.connect(self.setBarText)
+        self.thread.finished.connect(self.threadFinish)
         self.progressBar.setValue(0)
+        self.progressBar.setTextVisible(True)
+        self.progressBar.setFormat("0")
 
         self.directoryLayout = QHBoxLayout()
         self.directoryLayout.addWidget(self.directoryLabel)
         self.directoryLayout.addWidget(self.directoryEdit)
         self.directoryLayout.addWidget(self.directoryButton)
         
+        self.checkBoxLayout = QHBoxLayout()
+        self.checkBoxLayout.addWidget(self.subdirCheckBox)
+        self.checkBoxLayout.addWidget(self.hiddenCheckBox)
+        self.checkBoxLayout.addWidget(self.symlinkCheckBox)
+
         self.buttonLayout = QHBoxLayout()
         self.buttonLayout.addWidget(self.aboutButton)
         self.buttonLayout.addStretch(1)
@@ -124,7 +191,7 @@ class StartWindow(QWidget):
         self.mainLayout.addWidget(self.inputTextEdit)
         self.mainLayout.addWidget(self.outputTextLabel)
         self.mainLayout.addWidget(self.outputTextEdit)
-        self.mainLayout.addWidget(self.checkBox)
+        self.mainLayout.addLayout(self.checkBoxLayout)
         self.mainLayout.addWidget(self.progressBar)
         self.mainLayout.addLayout(self.buttonLayout)
         
@@ -145,42 +212,38 @@ class StartWindow(QWidget):
     def showAbout(self):
         self.about.show()
 
+    def setMax(self,count):
+        self.progressBar.setMaximum(count)
+        self.filecount = count
+
+    def setProgress(self,count):
+        self.progressBar.setValue(count)
+        self.progressBar.setFormat(str(count) + "/" + str(self.filecount))
+
+    def setBarText(self,text):
+        self.progressBar.setFormat(text)
+
+    def threadFinish(self):
+        self.okButton.setEnabled(True)
+        showMessageBox(texts.translate("messagebox.finished.title"),texts.translate("messagebox.finished.text"))
+        
     def replaceFiles(self):
         path = self.directoryEdit.text()
         if not os.path.isdir(path):
-            showMessageBox(texts.translate("messagebox.nodirectory.title"),texts.translate("messagebox.nodirectory.text").replace("{}",path))
+            showMessageBox(texts.translate("messagebox.nodirectory.title"),texts.translate("messagebox.nodirectory.text") % path)
             return
         searchText = self.inputTextEdit.toPlainText()
         if searchText == "":
             showMessageBox(texts.translate("messagebox.nosearchtext.title"),texts.translate("messagebox.nosearchtext.text"))
             return
         replaceText = self.outputTextEdit.toPlainText()
-        if self.checkBox.checkState() == 0:
-            dircontent = glob.iglob(os.path.join(path,"**"),recursive=False)
-        else:
-            dircontent = glob.iglob(os.path.join(path,"**"),recursive=True)
-        filelist = []
-        for item in dircontent:
-            if not os.path.isdir(item):
-                filelist.append(item)
-        onePercent = len(filelist) / 100
+        self.okButton.setEnabled(False)
         self.progressBar.setValue(0)
-        progressValue = 0
-        for filename in filelist:
-            try:
-                with open(filename, 'r') as file :
-                    filedata = file.read()
-                filedata = filedata.replace(searchText,replaceText)
-                with open(filename, 'w') as file:
-                    file.write(filedata)
-            except:
-                print(texts.translate("replace.error").replace("{}",filename))
-            progressValue += 1
-            self.progressBar.setValue(progressValue / onePercent)
-        showMessageBox(texts.translate("messagebox.finished.title"),texts.translate("messagebox.finished.text"))
+        self.thread.setup(bool(self.subdirCheckBox.checkState()),path,searchText,replaceText,bool(self.hiddenCheckBox.checkState()),bool(self.symlinkCheckBox.checkState()))
+        self.thread.start()
 
   
-version = "1.1" 
+version = "2.0" 
 app = QApplication(sys.argv)
 texts = TranslationHelper(QLocale.system().name())
 w = StartWindow()
