@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QMessageBox, QApplication, QWidget, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog
 from PyQt5.QtCore import QDir, QLocale, Qt, QThread, pyqtSignal
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QIcon
 import webbrowser
-import glob
 import sys
 import os
 
@@ -46,6 +45,8 @@ class AboutWindow(QWidget):
         self.viewSourceButton = QPushButton(texts.translate("about.viewSource"))
         self.closeButton = QPushButton(texts.translate("about.close"))
         
+        self.closeButton.setIcon(QIcon.fromTheme("window-close"))
+
         self.titleLabelFont = QFont()
         self.titleLabelFont.setBold(True)
         self.titleLabelFont.setPointSize(16)
@@ -91,7 +92,6 @@ class ReplaceThread(QThread):
     text = pyqtSignal("QString")
     def __init__(self):
         QThread.__init__(self)
-        #self.signal = pyqtSignal('QString')
 
     def __del__(self):
         self.wait()
@@ -105,18 +105,21 @@ class ReplaceThread(QThread):
         self.followSymlinks = followSymlinks
 
     def listFiles(self,path): 
-        self.text.emit(texts.translate("progressbar.searching") % path)  
-        for f in os.listdir(path):
-            if f.startswith(".") and self.skipHidden:
-                continue
-            filename = os.path.join(path,f)
-            if os.path.islink(filename) and not self.followSymlinks:
-                continue
-            if os.path.isdir(filename):
-                if self.recursive:
-                    self.listFiles(filename)
-            else:
-                self.filelist.append(filename)
+        self.text.emit(texts.translate("progressbar.searching") % path)
+        try:  
+            for f in os.listdir(path):
+                if f.startswith(".") and self.skipHidden:
+                    continue
+                filename = os.path.join(path,f)
+                if os.path.islink(filename) and not self.followSymlinks:
+                    continue
+                if os.path.isdir(filename):
+                    if self.recursive:
+                        self.listFiles(filename)
+                else:
+                    self.filelist.append(filename)
+        except:
+            print("Could not read " + path)
 
     def run(self):
         self.filelist = []
@@ -155,6 +158,9 @@ class StartWindow(QWidget):
         self.progressBar = QProgressBar()
         self.aboutButton = QPushButton(texts.translate("button.about"))
         self.okButton = QPushButton(texts.translate("button.ok"))
+
+        self.directoryButton.setIcon(QIcon.fromTheme("folder"))
+        self.aboutButton.setIcon(QIcon.fromTheme("help-about"))
 
         self.directoryEdit.setText(QDir.currentPath())
         self.inputTextEdit.setLineWrapMode(QPlainTextEdit.NoWrap)
@@ -243,7 +249,7 @@ class StartWindow(QWidget):
         self.thread.start()
 
   
-version = "2.0" 
+version = "2.1" 
 app = QApplication(sys.argv)
 texts = TranslationHelper(QLocale.system().name())
 w = StartWindow()
