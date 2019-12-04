@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=jdReplace
+Comment=With jdReplace you can replace a text in all files of a directory
+Comment[de]=jdReplace sucht und ersetzt einen Text in allen Dateien eines Ordners
+Exec=jdreplace
+Terminal=false
+Type=Application
+Categories=Qt;Utility;
