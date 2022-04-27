@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<component type="desktop">
+  <!--Created with jdAppdataEdit 3.0-->
+  <id>com.gitlab.JakobDev.jdReplace</id>
+  <name>jdReplace</name>
+  <summary>With jdReplace you can replace a text in all files of a directory</summary>
+  <summary xml:lang="de">jdReplace sucht und ersetzt einen Text in allen Dateien eines Ordne</summary>
+  <developer_name>JakobDev</developer_name>
+  <launchable type="desktop-id">com.gitlab.JakobDev.jdReplace.desktop</launchable>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <description>
+    <p>jdReplace is a simple mass search and replace tool. You set a directory, a text to replace, the replacement and click OK. jdReplace will do the rest.</p>
+    <p xml:lang="de">jdTextEdit ist ein einfaches Tool zur Textersetzung. Du gibst einen Ordner, einen zu ersetzenden Text und den neuen Text an und klickst auf OK. jdReplace übernimmt den Rest.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <caption>The Window</caption>
+      <caption xml:lang="de">Das Fenster</caption>
+      <image type="source">https://gitlab.com/JakobDev/jdReplace/-/raw/3.0/screenshots/MainWindow.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="3.0" date="2022-04-27" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/3.0</url>
+      <description>
+        <ul>
+          <li>Port to PyQt6</li>
+          <li>Add Logo</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.2" date="2019-12-04" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.2</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://gitlab.com/JakobDev/jdReplace/-/archive/2.2/jdReplace-2.2.tar.gz</location>
+          <checksum type="sha1">99704bd3b7fea0cf48c7b486920cf82d8b9985e8</checksum>
+          <checksum type="sha256">8a8df34b3dd4c80ac3561f109162fb3ef81008a50ebc3ce3915ef0a3139e16b5</checksum>
+          <checksum type="blake2b">59879905d122c3e6c4bd8cffef1966d486b16bbe879549b0313c41d4fa268371f83de62aff57c5396e37b5c5bd3721b2611af156d8f2434cf4223be210ecd534</checksum>
+          <checksum type="blake2s">2a7b812631bef242bc642ed87650a28c2f9f1dc62a64145f0b10df45c018033a</checksum>
+        </artifact>
+      </artifacts>
+    </release>
+    <release version="2.1" date="2019-10-24" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.1</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://gitlab.com/JakobDev/jdReplace/-/archive/2.1/jdReplace-2.1.tar.gz</location>
+          <checksum type="sha1">35e8567483a9e991c4d5c0601ad848e5418a0a5a</checksum>
+          <checksum type="sha256">210877ccb91e111a9d37f79b16d7fb9b320d3425c8495e9d0bdffc61f27c9059</checksum>
+          <checksum type="blake2b">a39ded63364a0490411b395272629182c1348fd90d59a38e2ef7f1408fda7991b32af5d73e65b66af61a829ba783c38ae714eedb63274b04dd50a073f48cdc51</checksum>
+          <checksum type="blake2s">bb1c9f8035aac3a81df72b262e0cc49c4383851a8d476db8251f762c19bc02c6</checksum>
+        </artifact>
+      </artifacts>
+    </release>
+    <release version="2.0" date="2019-08-07" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.0</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://gitlab.com/JakobDev/jdReplace/-/archive/2.0/jdReplace-2.0.tar.gz</location>
+          <checksum type="sha1">6e5813da2af29f8cff0767a303d4a853ee4b918a</checksum>
+          <checksum type="sha256">aff41113351c3c17a06482ed53d0593fad378ffe50bda59b0ee268adbe58dc2c</checksum>
+          <checksum type="blake2b">3c8f11fb033417d1733bfc9daba2f9fa8606e6d497540b9b30e3000d740aecda8c5446d093cbe46fdc805d5ad027dc75f73165a15af7a73b9059251f09a4a7c0</checksum>
+          <checksum type="blake2s">a37e04cea7d4ebeeed8c58e4a03c9714b6b5118b996be9b63459a8cbdd37659f</checksum>
+        </artifact>
+      </artifacts>
+    </release>
+    <release version="1.1" date="2019-06-28" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/1.1</url>
+      <artifacts>
+        <artifact type="source">
+          <location>https://gitlab.com/JakobDev/jdReplace/-/archive/1.1/jdReplace-1.1.tar.gz</location>
+          <checksum type="sha1">8ebbd51fdeb531b0c60bb1dcf5badc8ed159402f</checksum>
+          <checksum type="sha256">e839d9a71950aec87f84686a6a7389d20878680c3c66ca78b966dd0dc3478547</checksum>
+          <checksum type="blake2b">ed34ef2d378bb50c789749b87b66a0d5bcdbb588cdb2c18cee2f8b7a0e552d733748d486fdac76247015e069bf272c687aaac72468e869e5b61873b1ca111107</checksum>
+          <checksum type="blake2s">6ad6e510dfa1aa18fb89d166063504e4908e497ea5090eec33049c5c77cef8c6</checksum>
+        </artifact>
+      </artifacts>
+    </release>
+  </releases>
+  <url type="homepage">https://gitlab.com/JakobDev/jdReplace</url>
+  <url type="bugtracker">https://gitlab.com/JakobDev/jdReplace/-/issues</url>
+  <categories>
+    <category>Utility</category>
+    <category>Qt</category>
+  </categories>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
+  <content_rating type="oars-1.1"/>
+  <provides>
+    <binary>jdReplace</binary>
+    <python3>jdReplace</python3>
+  </provides>
+  <keywords>
+    <keyword>search</keyword>
+    <keyword>replace</keyword>
+    <keyword>pyqt</keyword>
+  </keywords>
+</component>

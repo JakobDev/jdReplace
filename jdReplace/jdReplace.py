@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-from PyQt5.QtWidgets import QMessageBox, QApplication, QWidget, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog
-from PyQt5.QtCore import QDir, QLocale, Qt, QThread, pyqtSignal
+from PyQt6.QtWidgets import QMessageBox, QApplication, QWidget, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog
+from PyQt6.QtCore import QDir, QLocale, Qt, QThread, pyqtSignal
 from jdTranslationHelper import jdTranslationHelper
-from PyQt5.QtGui import QFont, QIcon
+from PyQt6.QtGui import QFont, QIcon
 import webbrowser
 import sys
 import os
 
-version = "2.2"
+version = "3.0"
 
+logo = QIcon(os.path.join(os.path.dirname(__file__), "Logo.svg"))
 texts = jdTranslationHelper(lang=QLocale.system().name())
 currentDir = os.path.dirname(os.path.realpath(__file__))
 texts.loadDirectory(os.path.join(currentDir,"translation"))
@@ -17,18 +18,21 @@ def showMessageBox(title,text):
     messageBox = QMessageBox()
     messageBox.setWindowTitle(title)
     messageBox.setText(text)
-    messageBox.setStandardButtons(QMessageBox.Ok)
-    messageBox.exec_()
+    messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
+    messageBox.exec()
 
 class AboutWindow(QWidget):
     def setup(self):
+        logoLabel = QLabel()
+        logoLabel.setPixmap(logo.pixmap(50, 50))
+
         self.titleLabel = QLabel("jdReplace Version " + version)
         self.descriptionLabel = QLabel(texts.translate("about.description"))
-        self.copyrightLabel = QLabel("Copyright © 2019 JakobDev")
+        self.copyrightLabel = QLabel("Copyright © 2019-2022 JakobDev")
         self.licenseLabel = QLabel(texts.translate("about.license"))
         self.viewSourceButton = QPushButton(texts.translate("about.viewSource"))
         self.closeButton = QPushButton(texts.translate("about.close"))
-        
+
         self.closeButton.setIcon(QIcon.fromTheme("window-close"))
 
         self.titleLabelFont = QFont()
@@ -42,10 +46,11 @@ class AboutWindow(QWidget):
         self.copyrightLabel.setFont(self.legalFont)
         self.licenseLabel.setFont(self.legalFont)
 
-        self.titleLabel.setAlignment(Qt.AlignCenter)
-        self.descriptionLabel.setAlignment(Qt.AlignCenter)
-        self.copyrightLabel.setAlignment(Qt.AlignCenter)
-        self.licenseLabel.setAlignment(Qt.AlignCenter)
+        logoLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.titleLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.descriptionLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.copyrightLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.licenseLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.viewSourceButton.clicked.connect(self.viewSourceAction)
         self.closeButton.clicked.connect(self.closeAction)
@@ -55,15 +60,16 @@ class AboutWindow(QWidget):
         self.buttonLayout.addWidget(self.closeButton)
 
         self.mainLayout = QVBoxLayout()
+        self.mainLayout.addWidget(logoLabel)
         self.mainLayout.addWidget(self.titleLabel)
         self.mainLayout.addWidget(self.descriptionLabel)
         self.mainLayout.addWidget(self.copyrightLabel)
         self.mainLayout.addWidget(self.licenseLabel)
         self.mainLayout.addLayout(self.buttonLayout)
-        
+
         self.setLayout(self.mainLayout)
         self.setWindowTitle(texts.translate("about.title"))
-        
+
     def viewSourceAction(self):
         webbrowser.open("https://gitlab.com/JakobDev/jdReplace")
 
@@ -77,9 +83,6 @@ class ReplaceThread(QThread):
     def __init__(self):
         QThread.__init__(self)
 
-    def __del__(self):
-        self.wait()
-
     def setup(self,recursive,path,searchText,replaceText,skipHidden,followSymlinks):
         self.recursive = recursive
         self.path = path
@@ -88,9 +91,9 @@ class ReplaceThread(QThread):
         self.skipHidden = skipHidden
         self.followSymlinks = followSymlinks
 
-    def listFiles(self,path): 
+    def listFiles(self,path):
         self.text.emit(texts.translate("progressbar.searching") % path)
-        try:  
+        try:
             for f in os.listdir(path):
                 if f.startswith(".") and self.skipHidden:
                     continue
@@ -147,8 +150,8 @@ class StartWindow(QWidget):
         self.aboutButton.setIcon(QIcon.fromTheme("help-about"))
 
         self.directoryEdit.setText(QDir.currentPath())
-        self.inputTextEdit.setLineWrapMode(QPlainTextEdit.NoWrap)
-        self.outputTextEdit.setLineWrapMode(QPlainTextEdit.NoWrap)
+        self.inputTextEdit.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
+        self.outputTextEdit.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
         self.directoryButton.clicked.connect(self.browse)
         self.aboutButton.clicked.connect(self.showAbout)
         self.okButton.clicked.connect(self.replaceFiles)
@@ -164,7 +167,7 @@ class StartWindow(QWidget):
         self.directoryLayout.addWidget(self.directoryLabel)
         self.directoryLayout.addWidget(self.directoryEdit)
         self.directoryLayout.addWidget(self.directoryButton)
-        
+
         self.checkBoxLayout = QHBoxLayout()
         self.checkBoxLayout.addWidget(self.subdirCheckBox)
         self.checkBoxLayout.addWidget(self.hiddenCheckBox)
@@ -184,7 +187,7 @@ class StartWindow(QWidget):
         self.mainLayout.addLayout(self.checkBoxLayout)
         self.mainLayout.addWidget(self.progressBar)
         self.mainLayout.addLayout(self.buttonLayout)
-        
+
         self.setLayout(self.mainLayout)
         self.resize(650, 550)
         self.setWindowTitle("jdReplace")
@@ -198,7 +201,7 @@ class StartWindow(QWidget):
 
         if directory:
             self.directoryEdit.setText(directory)
-    
+
     def showAbout(self):
         self.about.show()
 
@@ -216,7 +219,7 @@ class StartWindow(QWidget):
     def threadFinish(self):
         self.okButton.setEnabled(True)
         showMessageBox(texts.translate("messagebox.finished.title"),texts.translate("messagebox.finished.text"))
-        
+
     def replaceFiles(self):
         path = self.directoryEdit.text()
         if not os.path.isdir(path):
@@ -229,12 +232,12 @@ class StartWindow(QWidget):
         replaceText = self.outputTextEdit.toPlainText()
         self.okButton.setEnabled(False)
         self.progressBar.setValue(0)
-        self.thread.setup(bool(self.subdirCheckBox.checkState()),path,searchText,replaceText,bool(self.hiddenCheckBox.checkState()),bool(self.symlinkCheckBox.checkState()))
+        self.thread.setup(self.subdirCheckBox.isChecked(), path, searchText, replaceText, self.hiddenCheckBox.isChecked(), self.symlinkCheckBox.isChecked())
         self.thread.start()
 
 def main():
     app = QApplication(sys.argv)
+    app.setWindowIcon(logo)
     w = StartWindow()
     w.setup()
-    sys.exit(app.exec_())
-
+    sys.exit(app.exec())
