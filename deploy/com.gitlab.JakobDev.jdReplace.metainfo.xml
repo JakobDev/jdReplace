@@ -11,7 +11,7 @@
   <project_license>GPL-3.0-only</project_license>
   <description>
     <p>jdReplace is a simple mass search and replace tool. You set a directory, a text to replace, the replacement and click OK. jdReplace will do the rest.</p>
-    <p xml:lang="de">jdTextEdit ist ein einfaches Tool zur Textersetzung. Du gibst einen Ordner, einen zu ersetzenden Text und den neuen Text an und klickst auf OK. jdReplace übernimmt den Rest.</p>
+    <p xml:lang="de">jdReplace ist ein einfaches Tool zur Textersetzung. Du gibst einen Ordner, einen zu ersetzenden Text und den neuen Text an und klickst auf OK. jdReplace übernimmt den Rest.</p>
   </description>
   <screenshots>
     <screenshot type="default">
