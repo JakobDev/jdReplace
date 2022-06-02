@@ -105,7 +105,7 @@ class ReplaceThread(QThread):
                         self.listFiles(filename)
                 else:
                     self.filelist.append(filename)
-        except:
+        except Exception:
             print("Could not read " + path)
 
     def run(self):
@@ -121,7 +121,7 @@ class ReplaceThread(QThread):
                     filedata = filedata.replace(self.searchText,self.replaceText)
                     with open(filename, 'w') as file:
                         file.write(filedata)
-            except:
+            except Exception:
                 print(texts.translate("replace.error").replace("{}",filename))
             progressCount += 1
             self.progress.emit(progressCount)
