@@ -237,7 +237,11 @@ class StartWindow(QWidget):
 
 def main():
     app = QApplication(sys.argv)
+
+    app.setDesktopFileName("com.gitlab.JakobDev.jdReplace")
+    app.setApplicationName("jdReplace")
     app.setWindowIcon(logo)
+
     w = StartWindow()
     w.setup()
     sys.exit(app.exec())
