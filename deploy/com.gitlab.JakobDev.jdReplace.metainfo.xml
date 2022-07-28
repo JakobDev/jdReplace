@@ -5,6 +5,7 @@
   <name>jdReplace</name>
   <summary>With jdReplace you can replace a text in all files of a directory</summary>
   <summary xml:lang="de">jdReplace sucht und ersetzt einen Text in allen Dateien eines Ordne</summary>
+  <summary xml:lang="nl">jdReplace zoekt en vervangt tekst van alle bestanden in een map</summary>
   <developer_name>JakobDev</developer_name>
   <launchable type="desktop-id">com.gitlab.JakobDev.jdReplace.desktop</launchable>
   <metadata_license>CC0-1.0</metadata_license>
@@ -12,11 +13,13 @@
   <description>
     <p>jdReplace is a simple mass search and replace tool. You set a directory, a text to replace, the replacement and click OK. jdReplace will do the rest.</p>
     <p xml:lang="de">jdReplace ist ein einfaches Tool zur Textersetzung. Du gibst einen Ordner, einen zu ersetzenden Text und den neuen Text an und klickst auf OK. jdReplace übernimmt den Rest.</p>
+        <p xml:lang="nl">jdReplace is een hulpmiddel voor het zoeken en vervangen van tekst. Kies een map, een te vervangen tekst, een nieuwe tekst en kilk op ‘Oké’. jdReplace doet de rest.</p>
   </description>
   <screenshots>
     <screenshot type="default">
       <caption>The Window</caption>
       <caption xml:lang="de">Das Fenster</caption>
+      <caption xml:lang="nl">Het hoofdvenster</caption>
       <image type="source">https://gitlab.com/JakobDev/jdReplace/-/raw/3.0/screenshots/MainWindow.png</image>
     </screenshot>
   </screenshots>
