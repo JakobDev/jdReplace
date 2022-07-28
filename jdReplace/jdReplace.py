@@ -10,7 +10,7 @@ import os
 version = "3.0"
 
 logo = QIcon(os.path.join(os.path.dirname(__file__), "Logo.svg"))
-texts = jdTranslationHelper(lang=QLocale.system().name())
+texts = jdTranslationHelper(lang=QLocale.system().name().split("_")[0], default_language="en")
 currentDir = os.path.dirname(os.path.realpath(__file__))
 texts.loadDirectory(os.path.join(currentDir,"translation"))
 
