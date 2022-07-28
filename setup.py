@@ -5,7 +5,7 @@ with open("README.md","r",encoding="utf-8") as f:
     description = f.read()
 
 setup(name='jdReplace',
-    version='3.0',
+    version='3.1',
     description='With jdReplace you can replace a text in all files of a directory',
     long_description=description,
     long_description_content_type='text/markdown',

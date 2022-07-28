@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop">
-  <!--Created with jdAppdataEdit 3.0-->
+  <!--Created with jdAppdataEdit 4.0-->
   <id>com.gitlab.JakobDev.jdReplace</id>
   <name>jdReplace</name>
   <summary>With jdReplace you can replace a text in all files of a directory</summary>
@@ -13,7 +13,7 @@
   <description>
     <p>jdReplace is a simple mass search and replace tool. You set a directory, a text to replace, the replacement and click OK. jdReplace will do the rest.</p>
     <p xml:lang="de">jdReplace ist ein einfaches Tool zur Textersetzung. Du gibst einen Ordner, einen zu ersetzenden Text und den neuen Text an und klickst auf OK. jdReplace übernimmt den Rest.</p>
-        <p xml:lang="nl">jdReplace is een hulpmiddel voor het zoeken en vervangen van tekst. Kies een map, een te vervangen tekst, een nieuwe tekst en kilk op ‘Oké’. jdReplace doet de rest.</p>
+    <p xml:lang="nl">jdReplace is een hulpmiddel voor het zoeken en vervangen van tekst. Kies een map, een te vervangen tekst, een nieuwe tekst en kilk op ‘Oké’. jdReplace doet de rest.</p>
   </description>
   <screenshots>
     <screenshot type="default">
@@ -24,18 +24,21 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="3.0" date="2022-04-27" type="stable">
-      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/3.0</url>
+    <release version="3.1" date="2022-07-28" type="stable">
       <description>
+        <ul>
+          <li>Add Dutch translation</li>
+        </ul>
+      </description>
+    </release>
+    <release version="3.0" date="2022-04-26" type="stable"><url>https://gitlab.com/JakobDev/jdReplace/-/releases/3.0</url><description>
         <ul>
           <li>Port to PyQt6</li>
           <li>Add Logo</li>
         </ul>
       </description>
     </release>
-    <release version="2.2" date="2019-12-04" type="stable">
-      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.2</url>
-      <artifacts>
+    <release version="2.2" date="2019-12-03" type="stable"><url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.2</url><artifacts>
         <artifact type="source">
           <location>https://gitlab.com/JakobDev/jdReplace/-/archive/2.2/jdReplace-2.2.tar.gz</location>
           <checksum type="sha1">99704bd3b7fea0cf48c7b486920cf82d8b9985e8</checksum>
@@ -45,9 +48,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="2.1" date="2019-10-24" type="stable">
-      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.1</url>
-      <artifacts>
+    <release version="2.1" date="2019-10-23" type="stable"><url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.1</url><artifacts>
         <artifact type="source">
           <location>https://gitlab.com/JakobDev/jdReplace/-/archive/2.1/jdReplace-2.1.tar.gz</location>
           <checksum type="sha1">35e8567483a9e991c4d5c0601ad848e5418a0a5a</checksum>
@@ -57,9 +58,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="2.0" date="2019-08-07" type="stable">
-      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.0</url>
-      <artifacts>
+    <release version="2.0" date="2019-08-06" type="stable"><url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.0</url><artifacts>
         <artifact type="source">
           <location>https://gitlab.com/JakobDev/jdReplace/-/archive/2.0/jdReplace-2.0.tar.gz</location>
           <checksum type="sha1">6e5813da2af29f8cff0767a303d4a853ee4b918a</checksum>
@@ -69,9 +68,7 @@
         </artifact>
       </artifacts>
     </release>
-    <release version="1.1" date="2019-06-28" type="stable">
-      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/1.1</url>
-      <artifacts>
+    <release version="1.1" date="2019-06-27" type="stable"><url>https://gitlab.com/JakobDev/jdReplace/-/releases/1.1</url><artifacts>
         <artifact type="source">
           <location>https://gitlab.com/JakobDev/jdReplace/-/archive/1.1/jdReplace-1.1.tar.gz</location>
           <checksum type="sha1">8ebbd51fdeb531b0c60bb1dcf5badc8ed159402f</checksum>

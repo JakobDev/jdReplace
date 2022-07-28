@@ -7,7 +7,7 @@ import webbrowser
 import sys
 import os
 
-version = "3.0"
+version = "3.1"
 
 logo = QIcon(os.path.join(os.path.dirname(__file__), "Logo.svg"))
 texts = jdTranslationHelper(lang=QLocale.system().name().split("_")[0], default_language="en")
