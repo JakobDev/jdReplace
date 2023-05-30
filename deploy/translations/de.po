@@ -1,0 +1,38 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-30 14:51+0200\n"
+"PO-Revision-Date: 2023-05-30 14:52+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml:6
+#: deploy/page.codeberg.JakobDev.jdReplace.desktop:4
+msgid "With jdReplace you can replace a text in all files of a directory"
+msgstr ""
+"jdReplace sucht und ersetzt einen Text in allen Dateien eines Ordners"
+
+#: deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml:12
+msgid ""
+"jdReplace is a simple mass search and replace tool. You set a directory, a "
+"text to replace, the replacement and click OK. jdReplace will do the rest."
+msgstr ""
+"jdReplace ist ein einfaches Tool zur Textersetzung. Du gibst einen Ordner, "
+"einen zu ersetzenden Text und den neuen Text an und klickst auf OK. "
+"jdReplace übernimmt den Rest."
+
+#: deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml:16
+msgid "The Window"
+msgstr "Das Fenster"

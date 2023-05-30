@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools", "PyQt6", "wheel"]
+build-backend = "BuildBackend"
+backend-path = ["."]
+
+[project]
+name = "jdReplace"
+description = "With jdReplace you can replace a text in all files of a directory"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["JakobDev", "PyQt6"]
+license = { text = "GPL-3" }
+authors = [
+    { name = "JakobDev", email = "jakobdev@gmx.de" }
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Environment :: Other Environment",
+    "Environment :: X11 Applications :: Qt",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Natural Language :: German",
+    "Topic :: Software Development",
+    "Topic :: Utilities",
+    "Operating System :: POSIX",
+    "Operating System :: POSIX :: BSD",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = [
+  "PyQt6",
+]
+dynamic = ["version"]
+
+[project.urls]
+Source = "https://codeberg.org/JakobDev/jdReplace"
+Issues = "https://codeberg.org/JakobDev/jdReplace/issues"
+Translate = "https://translate.codeberg.org/projects/jdReplace"
+Donation = "https://ko-fi.com/jakobdev"
+
+[project.gui-scripts]
+jdReplace = "jdReplace:main"
+
+[tool.setuptools.package-dir]
+jdReplace = "jdReplace"
+
+[tool.setuptools.dynamic]
+version = { file = "jdReplace/version.txt" }

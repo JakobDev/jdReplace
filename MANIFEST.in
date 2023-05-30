@@ -1,3 +1,4 @@
-include jdReplace/translation/*
+include jdReplace/translations/*.ts
 include jdReplace/Logo.svg
-include README.md
+include BuildBackend.py
+exclude tools/*

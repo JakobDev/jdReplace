@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
-from jdReplace.jdReplace import main
+#!/usr/bin/env python
+from jdReplace import main
 main()
 
