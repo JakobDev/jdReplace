@@ -1,6 +1,12 @@
 __pycache__/
 
-#setup.py
+# Compiled Qt translations
+*.qm
+
+# Compiled gettext translations
+*.mo
+
+# Build
 build/
 dist/
 jdReplace.egg-info/
