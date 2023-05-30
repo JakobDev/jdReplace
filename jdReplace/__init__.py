@@ -245,7 +245,7 @@ def main():
     app_translator = QTranslator()
     system_language = QLocale.system().name().split("_")[0]
     qt_translator.load(os.path.join(QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath), "qt_" + system_language + ".qm"))
-    app_translator.load(os.path.join(currentDir), "translations", "jdReplace_" + system_language + ".qm"))
+    app_translator.load(os.path.join(currentDir, "translations", "jdReplace_" + system_language + ".qm"))
     app.installTranslator(app_translator)
     app.installTranslator(qt_translator)
 
