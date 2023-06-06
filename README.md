@@ -3,7 +3,7 @@
 <h3 align="center">With jdReplace you can replace a text in all files of a directorys</h3>
 
 <p align="center">
-    <img alt="jdReplace" src="screenshots/MainWindow.png"/>
+    <img alt="jdReplace" src="screenshots/MainWindow_en.png"/>
 </p>
 
 jdReplace is a simple mass search and replace tool.
