@@ -2,7 +2,9 @@
 from PyQt6.QtWidgets import QMessageBox, QApplication, QWidget, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog
 from PyQt6.QtCore import QDir, QLocale, Qt, QThread, QCoreApplication, QTranslator, QLibraryInfo, pyqtSignal
 from PyQt6.QtGui import QFont, QIcon
+from typing import Optional
 import webbrowser
+import argparse
 import sys
 import os
 
@@ -16,7 +18,9 @@ with open(os.path.join(currentDir, "version.txt"), "r", encoding="utf-8") as f:
 
 
 class AboutWindow(QWidget):
-    def setup(self):
+    def __init__(self):
+        super().__init__()
+
         logoLabel = QLabel()
         logoLabel.setPixmap(logo.pixmap(64, 64))
 
@@ -124,9 +128,10 @@ class ReplaceThread(QThread):
 
 
 class StartWindow(QWidget):
-    def setup(self):
+    def __init__(self, startDirectory: Optional[str]):
+        super().__init__()
+
         self.about = AboutWindow()
-        self.about.setup()
         self.thread = ReplaceThread()
 
         self.directoryLabel = QLabel(QCoreApplication.translate("StartWindow", "Directory:"))
@@ -146,7 +151,7 @@ class StartWindow(QWidget):
         self.directoryButton.setIcon(QIcon.fromTheme("folder"))
         self.aboutButton.setIcon(QIcon.fromTheme("help-about"))
 
-        self.directoryEdit.setText(QDir.currentPath())
+        self.directoryEdit.setText(startDirectory or QDir.currentPath())
         self.inputTextEdit.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
         self.outputTextEdit.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
         self.directoryButton.clicked.connect(self.browse)
@@ -241,6 +246,10 @@ def main():
     app.setApplicationName("jdReplace")
     app.setWindowIcon(logo)
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("directory", nargs="?")
+    args = parser.parse_known_args()[0]
+
     qt_translator = QTranslator()
     app_translator = QTranslator()
     system_language = QLocale.system().name().split("_")[0]
@@ -249,6 +258,5 @@ def main():
     app.installTranslator(app_translator)
     app.installTranslator(qt_translator)
 
-    w = StartWindow()
-    w.setup()
+    w = StartWindow(args.directory)
     sys.exit(app.exec())

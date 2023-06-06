@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-30 14:51+0200\n"
+"POT-Creation-Date: 2023-06-06 09:10+0200\n"
 "PO-Revision-Date: 2023-05-30 14:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,10 +19,9 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml:6
-#: deploy/page.codeberg.JakobDev.jdReplace.desktop:4
+#: deploy/page.codeberg.JakobDev.jdReplace.desktop:6
 msgid "With jdReplace you can replace a text in all files of a directory"
-msgstr ""
-"jdReplace sucht und ersetzt einen Text in allen Dateien eines Ordners"
+msgstr "jdReplace sucht und ersetzt einen Text in allen Dateien eines Ordners"
 
 #: deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml:12
 msgid ""

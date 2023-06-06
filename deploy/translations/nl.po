@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-30 14:51+0200\n"
+"POT-Creation-Date: 2023-06-06 09:10+0200\n"
 "PO-Revision-Date: 2023-05-30 14:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml:6
-#: deploy/page.codeberg.JakobDev.jdReplace.desktop:4
+#: deploy/page.codeberg.JakobDev.jdReplace.desktop:6
 msgid "With jdReplace you can replace a text in all files of a directory"
 msgstr "jdReplace zoekt en vervangt tekst van alle bestanden in een map"
 
@@ -28,9 +28,9 @@ msgid ""
 "jdReplace is a simple mass search and replace tool. You set a directory, a "
 "text to replace, the replacement and click OK. jdReplace will do the rest."
 msgstr ""
-"jdReplace is een hulpmiddel voor het zoeken en vervangen van tekst. Kies "
-"een map, een te vervangen tekst, een nieuwe tekst en kilk op ‘Oké’. "
-"jdReplace doet de rest."
+"jdReplace is een hulpmiddel voor het zoeken en vervangen van tekst. Kies een "
+"map, een te vervangen tekst, een nieuwe tekst en kilk op ‘Oké’. jdReplace "
+"doet de rest."
 
 #: deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml:16
 msgid "The Window"

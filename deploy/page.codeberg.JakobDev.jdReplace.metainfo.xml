@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop">
-  <!--Created with jdAppStreamEdit 6.0-->
+  <!--Created with jdAppStreamEdit 7.0-->
   <id>page.codeberg.JakobDev.jdReplace</id>
   <name>jdReplace</name>
   <summary>With jdReplace you can replace a text in all files of a directory</summary>
@@ -14,10 +14,21 @@
   <screenshots>
     <screenshot type="default">
       <caption>The Window</caption>
-      <image type="source">https://codeberg.org/JakobDev/jdReplace/raw/commit/05f1252aaf0f42be5d9988e4503f595b86a11255/screenshots/MainWindow.png</image>
+      <image type="source">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_en.png</image>
+      <image type="source" xml:lang="de">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_de.png</image>
+      <image type="source" xml:lang="nl">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_nl.png</image>
+      <image type="source" xml:lang="it">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_it.png</image>
     </screenshot>
   </screenshots>
   <releases>
+    <release version="4.1" date="2023-06-06" type="stable">
+      <description>
+        <ul>
+          <li>Add Italian translation</li>
+          <li>Allow opening with given Directory</li>
+        </ul>
+      </description>
+    </release>
     <release version="4.0" date="2023-05-30" type="stable">
       <description>
         <ul>
@@ -106,6 +117,7 @@
   <provides>
     <binary>jdReplace</binary>
     <python3>jdReplace</python3>
+    <mediatype>inode/directory</mediatype>
   </provides>
   <keywords>
     <keyword>search</keyword>

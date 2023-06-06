@@ -1,8 +1,10 @@
+# Created with jdDesktopEntryEdit 1.1
 [Desktop Entry]
+Type=Application
 Name=jdReplace
 Comment=With jdReplace you can replace a text in all files of a directory
 Icon=page.codeberg.JakobDev.jdReplace
-Exec=jdReplace
-Terminal=false
-Type=Application
+TryExec=jdReplace
+Exec=jdReplace %f
+MimeType=inode/directory;
 Categories=Qt;Utility;
