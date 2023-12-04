@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from PyQt6.QtWidgets import QMessageBox, QApplication, QWidget, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog
+from PyQt6.QtWidgets import QMessageBox, QApplication, QWidget, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog, QStyle
 from PyQt6.QtCore import QDir, QLocale, Qt, QThread, QCoreApplication, QTranslator, QLibraryInfo, pyqtSignal
 from PyQt6.QtGui import QFont, QIcon
 from typing import Optional
@@ -95,6 +95,8 @@ class ReplaceThread(QThread):
         self.text.emit(QCoreApplication.translate("ReplaceThread", "Searching {{path}}...").replace("{{path}}", path))
         try:
             for f in os.listdir(path):
+                if self.shouldExit:
+                    return
                 if f.startswith(".") and self.skipHidden:
                     continue
                 filename = os.path.join(path,f)
@@ -110,10 +112,20 @@ class ReplaceThread(QThread):
 
     def run(self) -> None:
         self.filelist = []
+        self.shouldExit = False
+
         self.listFiles(self.path)
+
+        if self.shouldExit:
+                return
+
         self.count.emit(len(self.filelist))
+
         progressCount = 0
         for filename in self.filelist:
+            if self.shouldExit:
+                return
+
             try:
                 with open(filename, 'r') as file :
                     filedata = file.read()
@@ -123,14 +135,16 @@ class ReplaceThread(QThread):
                         file.write(filedata)
             except Exception:
                 print(QCoreApplication.translate("ReplaceThread", "Could not replace text in {{path}}. Maybe it's a binary file.").replace("{{path}}", filename), file=sys.stderr)
+
             progressCount += 1
             self.progress.emit(progressCount)
 
 
 class StartWindow(QWidget):
-    def __init__(self, startDirectory: Optional[str]):
+    def __init__(self, app: QApplication, startDirectory: Optional[str]):
         super().__init__()
 
+        self.app = app
         self.about = AboutWindow()
         self.thread = ReplaceThread()
 
@@ -146,17 +160,18 @@ class StartWindow(QWidget):
         self.symlinkCheckBox = QCheckBox(QCoreApplication.translate("StartWindow", "Follow Symlinks"))
         self.progressBar = QProgressBar()
         self.aboutButton = QPushButton(QCoreApplication.translate("StartWindow", "About"))
-        self.okButton = QPushButton(QCoreApplication.translate("StartWindow", "OK"))
+        self.okCancelButton = QPushButton(QCoreApplication.translate("StartWindow", "OK"))
 
         self.directoryButton.setIcon(QIcon.fromTheme("folder"))
         self.aboutButton.setIcon(QIcon.fromTheme("help-about"))
+        self.okCancelButton.setIcon(QIcon(self.app.style().standardIcon(QStyle.StandardPixmap.SP_DialogOkButton)))
 
         self.directoryEdit.setText(startDirectory or QDir.currentPath())
         self.inputTextEdit.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
         self.outputTextEdit.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
         self.directoryButton.clicked.connect(self.browse)
         self.aboutButton.clicked.connect(self.showAbout)
-        self.okButton.clicked.connect(self.replaceFiles)
+        self.okCancelButton.clicked.connect(self.startCancelButtonClicked)
         self.thread.count.connect(self.setMax)
         self.thread.progress.connect(self.setProgress)
         self.thread.text.connect(self.setBarText)
@@ -178,7 +193,7 @@ class StartWindow(QWidget):
         self.buttonLayout = QHBoxLayout()
         self.buttonLayout.addWidget(self.aboutButton)
         self.buttonLayout.addStretch(1)
-        self.buttonLayout.addWidget(self.okButton)
+        self.buttonLayout.addWidget(self.okCancelButton)
 
         self.mainLayout = QVBoxLayout()
         self.mainLayout.addLayout(self.directoryLayout)
@@ -219,8 +234,19 @@ class StartWindow(QWidget):
         self.progressBar.setFormat(text)
 
     def threadFinish(self):
-        self.okButton.setEnabled(True)
-        QMessageBox.information(self, QCoreApplication.translate("StartWindow", "Finished"), QCoreApplication.translate("StartWindow", "The text has been successfully replaced in all files"))
+        self.okCancelButton.setText(QCoreApplication.translate("StartWindow", "OK"))
+        self.okCancelButton.setIcon(QIcon(self.app.style().standardIcon(QStyle.StandardPixmap.SP_DialogOkButton)))
+        if not self.thread.shouldExit:
+            print(QCoreApplication.translate("StartWindow", "Finished"))
+            QMessageBox.information(self, QCoreApplication.translate("StartWindow", "Finished"), QCoreApplication.translate("StartWindow", "The text has been successfully replaced in all files"))
+        else:
+            print(QCoreApplication.translate("StartWindow", "Canceled"))
+
+    def startCancelButtonClicked(self) -> None:
+        if self.thread.isRunning():
+            self.thread.shouldExit = True
+        else:
+            self.replaceFiles()
 
     def replaceFiles(self):
         path = self.directoryEdit.text()
@@ -234,7 +260,8 @@ class StartWindow(QWidget):
             return
 
         replaceText = self.outputTextEdit.toPlainText()
-        self.okButton.setEnabled(False)
+        self.okCancelButton.setText(QCoreApplication.translate("StartWindow", "Cancel"))
+        self.okCancelButton.setIcon(QIcon(self.app.style().standardIcon(QStyle.StandardPixmap.SP_DialogCancelButton)))
         self.progressBar.setValue(0)
         self.thread.setup(self.subdirCheckBox.isChecked(), path, searchText, replaceText, self.hiddenCheckBox.isChecked(), self.symlinkCheckBox.isChecked())
         self.thread.start()
@@ -258,5 +285,5 @@ def main():
     app.installTranslator(app_translator)
     app.installTranslator(qt_translator)
 
-    w = StartWindow(args.directory)
+    w = StartWindow(app, args.directory)
     sys.exit(app.exec())

@@ -37,7 +37,7 @@
       <translation>Bezig met zoeken naar ‘{{path}}’…</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="125" />
+      <location filename="../__init__.py" line="137" />
       <source>Could not replace text in {{path}}. Maybe it's a binary file.</source>
       <translation>De tekst in ‘{{path}}’ kan niet worden vervangen. Is het een uitvoerbaar bestand.</translation>
     </message>
@@ -45,80 +45,92 @@
   <context>
     <name>StartWindow</name>
     <message>
-      <location filename="../__init__.py" line="137" />
+      <location filename="../__init__.py" line="151" />
       <source>Directory:</source>
       <translation>Map:</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="202" />
-      <location filename="../__init__.py" line="139" />
+      <location filename="../__init__.py" line="217" />
+      <location filename="../__init__.py" line="153" />
       <source>Browse</source>
       <translation>Bladeren</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="140" />
+      <location filename="../__init__.py" line="154" />
       <source>Search for:</source>
       <translation>Zoeken naar:</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="142" />
+      <location filename="../__init__.py" line="156" />
       <source>Replace with:</source>
       <translation>Vervangen door:</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="144" />
+      <location filename="../__init__.py" line="158" />
       <source>Search Subdirectories</source>
       <translation>Ook onderliggende mappen doorzoeken</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="145" />
+      <location filename="../__init__.py" line="159" />
       <source>Skip Hidden</source>
       <translation>Verborgen bestanden/mappen overslaan</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="146" />
+      <location filename="../__init__.py" line="160" />
       <source>Follow Symlinks</source>
       <translation>Snelkoppelingen negeren</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="148" />
+      <location filename="../__init__.py" line="162" />
       <source>About</source>
       <translation>Over</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="149" />
+      <location filename="../__init__.py" line="237" />
+      <location filename="../__init__.py" line="163" />
       <source>OK</source>
       <translation>Oké</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="223" />
+      <location filename="../__init__.py" line="241" />
+      <location filename="../__init__.py" line="240" />
       <source>Finished</source>
       <translation>Afgerond</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="223" />
+      <location filename="../__init__.py" line="241" />
       <source>The text has been successfully replaced in all files</source>
       <translation>De tekst is in alle bestanden vervangen</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="228" />
+      <location filename="../__init__.py" line="243" />
+      <source>Canceled</source>
+      <translation type="unfinished" />
+    </message>
+    <message>
+      <location filename="../__init__.py" line="254" />
       <source>Not a directory</source>
       <translation>Geen map</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="228" />
+      <location filename="../__init__.py" line="254" />
       <source>'{{path}}' is not a directory!</source>
       <translation>‘{{path}}’ is geen map!</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="233" />
+      <location filename="../__init__.py" line="259" />
       <source>No search text</source>
       <translation>Geen zoekopdracht</translation>
     </message>
     <message>
-      <location filename="../__init__.py" line="233" />
+      <location filename="../__init__.py" line="259" />
       <source>Please enter a text to search for</source>
       <translation>Voer een zoekopdracht in</translation>
+    </message>
+    <message>
+      <location filename="../__init__.py" line="263" />
+      <source>Cancel</source>
+      <translation type="unfinished" />
     </message>
   </context>
 </TS>
