@@ -1,4 +1,7 @@
-pipeline:
+depends_on:
+    - check-starting
+
+steps:
     pypi_deploy:
         image: python:latest
         commands:
