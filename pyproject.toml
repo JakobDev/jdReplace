@@ -31,6 +31,7 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
 ]
@@ -53,3 +54,15 @@ jdReplace = "jdReplace"
 
 [tool.setuptools.dynamic]
 version = { file = "jdReplace/version.txt" }
+
+[tool.pyproject-appimage]
+script = "jdReplace"
+output = "jdReplace.AppImage"
+icon = "jdReplace/Logo.svg"
+rename-icon = "page.codeberg.JakobDev.jdReplace.png"
+desktop-entry = "deploy/page.codeberg.JakobDev.jdReplace.desktop"
+gettext-desktop-entry = true
+appstream = "deploy/page.codeberg.JakobDev.jdReplace.metainfo.xml"
+gettext-appstream = true
+gettext-directory = "deploy/translations"
+python-version = "3.12"

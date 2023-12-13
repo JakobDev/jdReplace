@@ -15,3 +15,6 @@ jdReplace.egg-info/
 WindowsBuild/
 *.spec
 *.exe
+
+# AppImage
+*.AppImage
