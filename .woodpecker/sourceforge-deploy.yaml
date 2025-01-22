@@ -4,6 +4,7 @@ depends_on:
 steps:
     sourceforge_deploy:
         image: codeberg.org/jakobdev/python-ci-build-container:latest
+        pull: true
         commands:
             - init-container
             - source set-file-env VERSION jdReplace/version.txt
@@ -21,4 +22,4 @@ steps:
                 from_secret: CODEBERG_API_TOKEN
 
 when:
-    event: tag
+    event: release
