@@ -1,133 +1,142 @@
 <?xml version='1.0' encoding='utf-8'?>
-<component type="desktop">
-    <!--Created with jdAppStreamEdit 7.0-->
-    <id>page.codeberg.JakobDev.jdReplace</id>
-    <name>jdReplace</name>
-    <summary>With jdReplace you can replace a text in all files of a directory</summary>
-    <developer_name>JakobDev</developer_name>
-    <launchable type="desktop-id">page.codeberg.JakobDev.jdReplace.desktop</launchable>
-    <metadata_license>CC0-1.0</metadata_license>
-    <project_license>GPL-3.0-only</project_license>
-    <description>
-        <p>jdReplace is a simple mass search and replace tool. You set a directory, a text to replace, the replacement and click OK. jdReplace will do the rest.</p>
-    </description>
-    <screenshots>
-        <screenshot type="default">
-            <caption>The Window</caption>
-            <image type="source">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_en.png</image>
-            <image type="source" xml:lang="de">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_de.png</image>
-            <image type="source" xml:lang="nl">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_nl.png</image>
-            <image type="source" xml:lang="it">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_it.png</image>
-        </screenshot>
-    </screenshots>
-    <releases>
-        <release version="4.2" date="2023-12-13" type="stable">
-            <description>
-                <ul>
-                    <li>Allow cancelling replacement</li>
-                    <li>Add French translation (Francewhoa)</li>
-                </ul>
-            </description>
-        </release>
-        <release version="4.1" date="2023-06-06" type="stable">
-            <description>
-                <ul>
-                    <li>Add Italian translation</li>
-                    <li>Allow opening with given Directory</li>
-                </ul>
-            </description>
-        </release>
-        <release version="4.0" date="2023-05-30" type="stable">
-            <description>
-                <ul>
-                    <li>Moved to Codeberg</li>
-                </ul>
-            </description>
-        </release>
-        <release version="3.1" date="2022-07-28" type="stable">
-            <description>
-                <ul>
-                    <li>Add Dutch translation</li>
-                </ul>
-            </description>
-        </release>
-        <release version="3.0" date="2022-04-27" type="stable">
-            <url>https://gitlab.com/JakobDev/jdReplace/-/releases/3.0</url>
-            <description>
-                <ul>
-                    <li>Port to PyQt6</li>
-                    <li>Add Logo</li>
-                </ul>
-            </description>
-        </release>
-        <release version="2.2" date="2019-12-04" type="stable">
-            <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.2</url>
-            <description>
-                <ul>
-                    <li>Use jdTranslationHelper</li>
-                    <li>Better Project structure</li>
-                </ul>
-            </description>
-        </release>
-        <release version="2.1" date="2019-10-24" type="stable">
-            <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.1</url>
-            <description>
-                <ul>
-                    <li>Add theme icons</li>
-                </ul>
-            </description>
-        </release>
-        <release version="2.0" date="2019-08-07" type="stable">
-            <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.0</url>
-            <description>
-                <ul>
-                    <li>The Replacing is now in it's own Thread</li>
-                    <li>Added option to disable hidden files and follow symlink</li>
-                    <li>jdReplace will no longer write files, if it dosen't find the search string</li>
-                </ul>
-            </description>
-        </release>
-        <release version="1.1" date="2019-06-28" type="stable">
-            <url>https://gitlab.com/JakobDev/jdReplace/-/releases/1.1</url>
-            <description>
-                <ul>
-                    <li>Better About Window</li>
-                </ul>
-            </description>
-        </release>
-        <release version="1.0" date="2019-06-25" type="stable">
-            <description>
-                <ul>
-                    <li>First Release</li>
-                </ul>
-            </description>
-        </release>
-    </releases>
-    <url type="homepage">https://jakobdev.codeberg.page/work/app/jdReplace</url>
-    <url type="bugtracker">https://codeberg.org/JakobDev/jdReplace/issues</url>
-    <url type="donation">https://ko-fi.com/jakobdev</url>
-    <url type="translate">https://translate.codeberg.org/projects/jdReplace</url>
-    <url type="vcs-browser">https://codeberg.org/JakobDev/jdReplace</url>
-    <categories>
-        <category>Utility</category>
-        <category>Qt</category>
-    </categories>
-    <recommends>
-        <control>pointing</control>
-        <control>keyboard</control>
-    </recommends>
-    <content_rating type="oars-1.1"/>
-    <provides>
-        <binary>jdReplace</binary>
-        <python3>jdReplace</python3>
-        <mediatype>inode/directory</mediatype>
-    </provides>
-    <keywords>
-        <keyword>search</keyword>
-        <keyword>replace</keyword>
-        <keyword>pyqt</keyword>
-    </keywords>
-    <replaces>
-        <id>com.gitlab.JakobDev.jdReplace</id>
-    </replaces>
+<component type="desktop-application">
+  <!--Created with jdAppStreamEdit 9.2-->
+  <id>page.codeberg.JakobDev.jdReplace</id>
+  <name>jdReplace</name>
+  <summary>With jdReplace you can replace a text in all files of a directory</summary>
+  <developer id="page.codeberg.jakobdev">
+    <name>JakobDev</name>
+  </developer>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <description>
+    <p>jdReplace is a simple mass search and replace tool. You set a directory, a text to replace, the replacement and click OK. jdReplace will do the rest.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <caption>The Window</caption>
+      <image type="source">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_en.png</image>
+      <image type="source" xml:lang="de">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_de.png</image>
+      <image type="source" xml:lang="nl">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_nl.png</image>
+      <image type="source" xml:lang="it">https://codeberg.org/JakobDev/jdReplace/raw/commit/ef0408d5d1cc16f3a0ab5cf0b467eea4f0e74c67/screenshots/MainWindow_it.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="4.3" date="2025-01-22" type="stable">
+      <description>
+        <ul>
+          <li>Added Estonian translation (Priit Jõerüüt)</li>
+        </ul>
+      </description>
+    </release>
+    <release version="4.2" date="2023-12-13" type="stable">
+      <description>
+        <ul>
+          <li>Allow cancelling replacement</li>
+          <li>Add French translation (Francewhoa)</li>
+        </ul>
+      </description>
+    </release>
+    <release version="4.1" date="2023-06-06" type="stable">
+      <description>
+        <ul>
+          <li>Add Italian translation</li>
+          <li>Allow opening with given Directory</li>
+        </ul>
+      </description>
+    </release>
+    <release version="4.0" date="2023-05-30" type="stable">
+      <description>
+        <ul>
+          <li>Moved to Codeberg</li>
+        </ul>
+      </description>
+    </release>
+    <release version="3.1" date="2022-07-28" type="stable">
+      <description>
+        <ul>
+          <li>Add Dutch translation</li>
+        </ul>
+      </description>
+    </release>
+    <release version="3.0" date="2022-04-27" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/3.0</url>
+      <description>
+        <ul>
+          <li>Port to PyQt6</li>
+          <li>Add Logo</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.2" date="2019-12-04" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.2</url>
+      <description>
+        <ul>
+          <li>Use jdTranslationHelper</li>
+          <li>Better Project structure</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.1" date="2019-10-24" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.1</url>
+      <description>
+        <ul>
+          <li>Add theme icons</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.0" date="2019-08-07" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/2.0</url>
+      <description>
+        <ul>
+          <li>The Replacing is now in it's own Thread</li>
+          <li>Added option to disable hidden files and follow symlink</li>
+          <li>jdReplace will no longer write files, if it dosen't find the search string</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1" date="2019-06-28" type="stable">
+      <url>https://gitlab.com/JakobDev/jdReplace/-/releases/1.1</url>
+      <description>
+        <ul>
+          <li>Better About Window</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0" date="2019-06-25" type="stable">
+      <description>
+        <ul>
+          <li>First Release</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  <url type="homepage">https://jakobdev.codeberg.page/work/app/jdReplace</url>
+  <url type="bugtracker">https://codeberg.org/JakobDev/jdReplace/issues</url>
+  <url type="donation">https://ko-fi.com/jakobdev</url>
+  <url type="translate">https://translate.codeberg.org/projects/jdReplace</url>
+  <url type="vcs-browser">https://codeberg.org/JakobDev/jdReplace</url>
+  <categories>
+    <category>Utility</category>
+    <category>Qt</category>
+  </categories>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
+  <content_rating type="oars-1.1"/>
+  <launchable type="desktop-id">page.codeberg.JakobDev.jdReplace.desktop</launchable>
+  <provides>
+    <binary>jdReplace</binary>
+    <python3>jdReplace</python3>
+    <mediatype>inode/directory</mediatype>
+  </provides>
+  <keywords>
+    <keyword>search</keyword>
+    <keyword>replace</keyword>
+    <keyword>pyqt</keyword>
+  </keywords>
+  <replaces>
+    <id>com.gitlab.JakobDev.jdReplace</id>
+  </replaces>
 </component>
