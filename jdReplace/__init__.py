@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from PyQt6.QtWidgets import QMessageBox, QApplication, QWidget, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog, QStyle
+from PyQt6.QtWidgets import QMessageBox, QApplication, QWidget, QDialog, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QCheckBox, QProgressBar, QFileDialog, QStyle
 from PyQt6.QtCore import QDir, QLocale, Qt, QThread, QCoreApplication, QTranslator, QLibraryInfo, pyqtSignal
 from PyQt6.QtGui import QFont, QIcon
 from typing import Optional
@@ -17,9 +17,9 @@ with open(os.path.join(currentDir, "version.txt"), "r", encoding="utf-8") as f:
     version = f.read().strip()
 
 
-class AboutWindow(QWidget):
-    def __init__(self):
-        super().__init__()
+class AboutWindow(QDialog):
+    def __init__(self, parent: QWidget):
+        super().__init__(parent)
 
         logoLabel = QLabel()
         logoLabel.setPixmap(logo.pixmap(64, 64))
@@ -145,7 +145,7 @@ class StartWindow(QWidget):
         super().__init__()
 
         self.app = app
-        self.about = AboutWindow()
+        self.about = AboutWindow(self)
         self.thread = ReplaceThread()
 
         self.directoryLabel = QLabel(QCoreApplication.translate("StartWindow", "Directory:"))
