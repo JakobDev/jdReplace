@@ -26,7 +26,7 @@ class AboutWindow(QWidget):
 
         self.titleLabel = QLabel("jdReplace " + version)
         self.descriptionLabel = QLabel(QCoreApplication.translate("AboutWindow", "With this program you can search and replace a text in all files of a folder"))
-        self.copyrightLabel = QLabel("Copyright © 2019-2023 JakobDev")
+        self.copyrightLabel = QLabel("Copyright © 2019-2025 JakobDev")
         self.licenseLabel = QLabel(QCoreApplication.translate("AboutWindow", "This program is licensed under GNU GPL 3"))
         self.viewSourceButton = QPushButton(QCoreApplication.translate("AboutWindow", "View Source"))
         self.closeButton = QPushButton(QCoreApplication.translate("AboutWindow", "Close"))
